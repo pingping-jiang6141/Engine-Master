@@ -885,7 +885,7 @@ public class BUtility {
     }
 
     public static Bitmap createBitmapWithPath(String pathName, int reqWidth,
-            int reqHeight) {
+                                              int reqHeight) {
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(pathName, opts);

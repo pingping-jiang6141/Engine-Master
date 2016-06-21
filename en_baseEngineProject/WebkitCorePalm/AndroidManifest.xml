@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.zywx.wbpalmstar.widgetone.uex"
-    android:versionCode="100"
-    android:versionName="3.0.0" 
+    android:versionCode="190"
+    android:versionName="2.2.41" 
     android:installLocation="internalOnly" >
 
     <application
@@ -17,7 +17,7 @@
         <activity
             android:name="org.zywx.wbpalmstar.engine.EBrowserActivity"
             android:alwaysRetainTaskState="true"
-            android:configChanges="keyboardHidden|orientation"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/browser_main_theme"

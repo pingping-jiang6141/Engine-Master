@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -463,11 +462,11 @@ public class EUExWindow extends EUExBase {
         try {
             JSONObject jsonObject = new JSONObject(json);
             String path = jsonObject.optString(BUtility.m_loadingImagePath);
-            path = BUtility.makeRealPath(path, mBrwView);
+            path = BUtility.getRealPathWithCopyRes(mBrwView,path);
             long time = jsonObject.optLong(BUtility.m_loadingImageTime);
             SharedPreferences sp = mContext.getSharedPreferences(
                     BUtility.m_loadingImageSp, Context.MODE_PRIVATE);
-            Editor editor = sp.edit();
+            SharedPreferences.Editor editor = sp.edit();
             editor.putString(BUtility.m_loadingImagePath, path);
             editor.putLong(BUtility.m_loadingImageTime, time);
             editor.commit();

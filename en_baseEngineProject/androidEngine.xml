@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.3_160527_01</version>
-	<package>android_Engine_3.3_160527_01</package>
-	<description>修复再次打开之前的窗口新参数无法更新问题</description>
+    <version>sdksuit_3.3_160621_01</version>
+	<package>android_Engine_3.3_160621_01</package>
+	<description>处理选择两个竖屏或两个横屏的情况;字体大小跟随系统字体大小变化问题</description>
 </info>

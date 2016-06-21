@@ -846,7 +846,13 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
             mBroWind.closeAd();
             return;
         }
-        loadUrl("file:///android_asset/error/error.html");
+        String errorPath="file:///android_asset/error/error.html";
+        if (mBroWind!=null&&!TextUtils.isEmpty(getRootWidget().mErrorPath)){
+            errorPath="file:///android_asset/widget/"+getRootWidget().mErrorPath;
+            loadUrl(errorPath);
+        }else{
+            loadUrl(errorPath);
+        }
     }
 
     public int getType() {

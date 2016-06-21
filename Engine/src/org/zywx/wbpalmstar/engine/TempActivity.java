@@ -136,6 +136,7 @@ public class TempActivity extends Activity {
                 overridePendingTransition(EUExUtil.getResAnimID("platform_myspace_fade_in_anim"),
                         EUExUtil.getResAnimID("platform_myspace_fade_out_anim"));
             }
+
         }
     }
 }
