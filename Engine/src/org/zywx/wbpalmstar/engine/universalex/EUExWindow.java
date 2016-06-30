@@ -3657,8 +3657,7 @@ public class EUExWindow extends EUExBase {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            View item = viewList.get(position);
-            container.removeView(item);
+            container.removeView((View) object);
         }
     }
 
