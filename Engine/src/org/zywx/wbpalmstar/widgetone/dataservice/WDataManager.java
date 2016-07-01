@@ -407,7 +407,6 @@ public class WDataManager {
                 widgetData.m_orientation = cursor.getInt(21);
                 widgetData.m_opaque = cursor.getString(cursor.getColumnIndex(WDBAdapter.F_COLUMN_OPAQUE));
                 widgetData.m_bgColor = cursor.getString(cursor.getColumnIndex(WDBAdapter.F_COLUMN_BGCOLOR));
-                widgetData.m_widgetOneLocation = cursor.getInt(cursor.getColumnIndex(WDBAdapter.F_COLUMN_WIDGETONE_LOCATION));
                 // widgetData.m_widgetAdStatus = cursor.getInt(22);
             }
             cursor.close();
@@ -452,7 +451,6 @@ public class WDataManager {
                 widgetData.m_orientation = cursor.getInt(21);
                 widgetData.m_opaque = cursor.getString(cursor.getColumnIndex(WDBAdapter.F_COLUMN_OPAQUE));
                 widgetData.m_bgColor = cursor.getString(cursor.getColumnIndex(WDBAdapter.F_COLUMN_BGCOLOR));
-                widgetData.m_widgetOneLocation = cursor.getInt(cursor.getColumnIndex(WDBAdapter.F_COLUMN_WIDGETONE_LOCATION));
                 // widgetData.m_widgetAdStatus = cursor.getInt(22);
             }
             cursor.close();
@@ -666,7 +664,6 @@ public class WDataManager {
         cv.put(WDBAdapter.F_COLUMN_ORIENTATION, widgetData.m_orientation);
         cv.put(WDBAdapter.F_COLUMN_OPAQUE, widgetData.m_opaque);
         cv.put(WDBAdapter.F_COLUMN_BGCOLOR, widgetData.m_bgColor);
-        cv.put(WDBAdapter.F_COLUMN_WIDGETONE_LOCATION, widgetData.m_widgetOneLocation);
         widgetDBId = db.insert(cv, tableName);
         widgetData.m_id = Integer.parseInt(String.valueOf(widgetDBId));
 
