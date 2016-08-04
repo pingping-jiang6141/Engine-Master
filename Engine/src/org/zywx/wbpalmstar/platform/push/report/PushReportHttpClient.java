@@ -52,6 +52,8 @@ import javax.net.ssl.X509TrustManager;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.Socket;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.security.KeyStore;
@@ -243,6 +245,7 @@ public class PushReportHttpClient {
             if (responesCode == 200) {
                 // 取出回应字串
                 String res = EntityUtils.toString(httpResponse.getEntity());
+                PushReportUtility.log("res ==" + res);
                 return res;
             }
         } catch (Exception e) {
@@ -533,5 +536,78 @@ public class PushReportHttpClient {
         public Socket createSocket() throws IOException {
             return mSSLContext.getSocketFactory().createSocket();
         }
+    }
+
+    public static String bindOrUnbindDeviceInfo(String url, JSONObject jsonObject, Context mCtx) {
+        PushReportUtility.log(url);
+        HttpURLConnection conn = null;
+        String response = null;
+        try {
+            if (url.startsWith("https://")) {
+                conn = Http.getHttpsURLConnection(new URL(url));
+            } else {
+                conn = (HttpURLConnection) new URL(url).openConnection();
+            }
+            conn.setRequestMethod("POST");
+            conn.setReadTimeout(60 * 1000);
+            conn.setConnectTimeout(60 * 1000);
+            conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Content-Type", "text/plain;charset=UTF-8");
+            conn.setRequestProperty("x-push-verify-key", "push");
+            conn.setRequestProperty("x-push-verify-id", "push");
+            SharedPreferences preferences = mCtx.getSharedPreferences(
+                    "app", Context.MODE_PRIVATE);
+            String appid = preferences.getString("appid", null);
+            String appkey = EUExUtil.getString("appkey");
+            appkey = PushReportUtility.decodeStr(appkey);
+            PushReportUtility.log("appid ==" + appid + " appkey ==" + appkey);
+            conn.setRequestProperty("x-mas-app-id", appid);
+            conn.setRequestProperty("x-mas-verify",
+                    PushReportUtility.getAppVerifyValue(appid, appkey,
+                            System.currentTimeMillis()));
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+
+            PushReportUtility.log(jsonObject.toString());
+            OutputStream outputStream = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            writer.write(jsonObject.toString());
+            writer.flush();
+            writer.close();
+            outputStream.close();
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
+
+                InputStream is = null;
+                try {
+                    is = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    response = sb.toString();
+                    is.close();
+                } catch (Exception e) {
+                    if (BDebug.DEBUG) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            PushReportUtility.log("responseCode ==" + responseCode);
+            PushReportUtility.log("response ==" + response);
+            return response;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            PushReportUtility.oe("bindDeviceInfo: " + url, e);
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        return null;
     }
 }

@@ -210,17 +210,23 @@ public class EUExWidget extends EUExBase {
     }
 
     public void delPushInfo(String[] params) {
-        String uId = "";
-        String uNickName = "";
-        if (params.length > 0) {
-            uId = params[0];
-        }
-        if (params.length > 1) {
-            uNickName = params[1];
-        }
         WidgetOneApplication app = (WidgetOneApplication) ((Activity) mContext)
                 .getApplication();
-        app.delPushInfo(uId, uNickName, mContext, mBrwView);
+        String host_pushBindUser = ResoureFinder.getInstance().getString(mContext,
+                "bindUser_host");
+        if (host_pushBindUser.indexOf("push") > 0) {
+            String uId = "";
+            String uNickName = "";
+            if (params.length > 0) {
+                uId = params[0];
+            }
+            if (params.length > 1) {
+                uNickName = params[1];
+            }
+            app.delPushInfo(uId, uNickName, mContext, mBrwView);
+        } else {
+            app.deviceUnBind(mContext, mBrwView);
+        }
     }
 
     public void startApp(String[] params) {
@@ -741,7 +747,13 @@ public class EUExWidget extends EUExBase {
         final String userNick = parm[1];
         WidgetOneApplication app = (WidgetOneApplication) ((Activity) mContext)
                 .getApplication();
-        app.setPushInfo(userId, userNick, mContext, mBrwView);
+        String host_pushBindUser = ResoureFinder.getInstance().getString(mContext,
+                "bindUser_host");
+        if (host_pushBindUser.indexOf("push") > 0) {
+            app.setPushInfo(userId, userNick, mContext, mBrwView);
+        } else {
+            app.deviceBind(userId, userNick, mContext, mBrwView);
+        }
     }
 
     public void setPushState(String[] parm) {

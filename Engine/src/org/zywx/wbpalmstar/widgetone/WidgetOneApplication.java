@@ -406,6 +406,17 @@ public class WidgetOneApplication extends Application {
         }
     }
 
+    public final void deviceBind(String userId, String userNick, Context mContext, EBrowserView mBrwView) {
+        for (EngineEventListener Listener : mListenerQueue) {
+            Listener.deviceBind(userId, userNick, mContext, mBrwView);
+        }
+    }
+
+    public final void deviceUnBind(Context mContext, EBrowserView mBrwView) {
+        for (EngineEventListener Listener : mListenerQueue) {
+            Listener.deviceUnBind(mContext, mBrwView);
+        }
+    }
     // 因为之前的方法无法替换子进程的classloader，故改成以下的方式。由于每一个进程初始化的时候都会初始化一次他的application，而且默认的classloader是和application的classloader一样的
     // 故在application初始化的时候，替换掉application的classloader。之前只有在主进程中才替换掉application的loader，所以子进程还是无法加载动态插件
     private void initClassLoader() {

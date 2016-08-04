@@ -21,6 +21,7 @@ package org.zywx.wbpalmstar.platform.push.report;
 public interface PushReportConstants {
     public static final String url_push_report = "report";
     public static final String url_push_bindUser = "msg/bindUser";
+    public static final String url_push_bindDevice = "4.0/installations";
 
     public static final String KEY_PUSH_BINDUSER_HOST = "bindUser_host";
     public static final String KEY_PUSH_REPORT_HOST = "bindUser_host";
@@ -56,12 +57,33 @@ public interface PushReportConstants {
     public static final String PUSH_DATA_JSON_KEY_BEHAVIOR = "behavior";
     public static final String PUSH_DATA_JSON_KEY_TENANTID = "tenantId";
 
+    public static final String PUSH_DEVICEBIND_KEY = "deviceBind";
+    public static final String PUSH_DEVICEBIND_KEY_DEVICENAME = "deviceName";
+    public static final String PUSH_DEVICEBIND_KEY_DEVICEVERSION = "deviceVersion";
+    public static final String PUSH_DEVICEBIND_KEY_DEVICETYPE = "deviceType";
+    public static final String PUSH_DEVICEBIND_KEY_DEVICEOWNER = "deviceOwner";
+    public static final String PUSH_DEVICEBIND_KEY_DEVICETOKEN = "deviceToken";
+    public static final String PUSH_DEVICEBIND_KEY_SOFTTOKEN = "softToken";
+    public static final String PUSH_DEVICEBIND_KEY_USER = "user";
+    public static final String PUSH_DEVICEBIND_KEY_USERID = "userId";
+    public static final String PUSH_DEVICEBIND_KEY_USERNAME = "username";
+    public static final String PUSH_DEVICEBIND_KEY_TAGS = "tags";
+    public static final String PUSH_DEVICEBIND_KEY_SESSIONSTATUS = "sessionStatus";
+    public static final String PUSH_DEVICEBIND_KEY_CLIENTID = "clientId";
+    public static final String PUSH_DEVICEBIND_KEY_CHANNELID = "channelId";
+    public static final String PUSH_DEVICEBIND_KEY_VERSIONID = "versionId";
+    public static final String PUSH_DEVICEBIND_KEY_VALID = "valid";
+    public static final String PUSH_DEVICEBIND_KEY_TIMEZONE = "timeZone";
+    public static final String PUSH_DEVICEBIND_KEY_ORG = "org";
+
     public final static int TYPE_INIT_PUSH = 0;
     public final static int TYPE_PUSH_BINDUSER = 1;
     public final static int TYPE_PUSH_REPORT_OPEN = 2;
     public final static int TYPE_PUSH_REPORT_ARRIVED = 3;
     public final static int TYPE_PUSH_UNBINDUSER = 4;
     public final static int TYPE_NEW_PUSH_REPORT_OPEN = 5;
+    public final static int TYPE_PUSH_DEVICEBIND = 6;
+    public final static int TYPE_PUSH_DEVICEUNBIND = 7;
 
     public static final int NETWORK_TYPE_UNKNOWN = 0;
     /**
