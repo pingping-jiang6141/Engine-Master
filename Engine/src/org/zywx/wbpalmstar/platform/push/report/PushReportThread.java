@@ -232,7 +232,7 @@ public class PushReportThread extends Thread implements PushReportConstants {
                 (host_pushBindUser + url_push_bindDevice), mJsonObject,
                 m_activity);
         if (null != mBrwView) {
-            EUExBase.callBackJs(mBrwView, "uexWidget.cbDeviceBind", result);
+            EUExBase.callBackJs(mBrwView, "uexWidget.cbSetPushInfo", result);
         }
     }
 
@@ -241,7 +241,7 @@ public class PushReportThread extends Thread implements PushReportConstants {
                 (host_pushBindUser + url_push_bindDevice), mJsonObject,
                 m_activity);
         if (null != mBrwView) {
-            EUExBase.callBackJs(mBrwView, "uexWidget.cbDeviceUnBind", result);
+            EUExBase.callBackJs(mBrwView, "uexWidget.cbDelPushInfo", result);
         }
     }
 }
