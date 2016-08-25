@@ -71,7 +71,7 @@ import java.util.Set;
 public class EUExWidget extends EUExBase {
     public static final String tag = "uexWidget";
 
-    public static final int LOADAPP_RQ_CODE = 1000001;
+    public static final short LOADAPP_RQ_CODE = 10001;
 
     public static final String function_getOpenerInfo = "uexWidget.cbGetOpenerInfo";
     public static final String function_checkUpdate = "uexWidget.cbCheckUpdate";
@@ -107,10 +107,10 @@ public class EUExWidget extends EUExBase {
         String inInfo = parm[3];
         String animDuration = null;
         String appKey = null;
-        if (parm.length == 5) {
+        if (parm.length >= 5) {
             animDuration = parm[4];
         }
-        if (parm.length == 6) {
+        if (parm.length >= 6) {
             appKey = parm[5];
         }
         int animId = EBrowserAnimation.ANIM_ID_NONE;

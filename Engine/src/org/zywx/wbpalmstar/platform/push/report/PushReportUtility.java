@@ -32,7 +32,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.zywx.wbpalmstar.base.BDebug;
 import org.zywx.wbpalmstar.base.BUtility;
 
 import android.content.Context;
@@ -427,9 +426,7 @@ public class PushReportUtility {
      * @param text
      */
     public static void log(String text) {
-        if (BDebug.DEBUG) {
-            Log.i("push", text);
-        }
+        Log.i("push", text);
         if (!isLog) {
             return;
         }
