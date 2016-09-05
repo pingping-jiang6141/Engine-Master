@@ -320,10 +320,12 @@ public class ThirdPluginMgr {
                 }
             }
         }
-        try {
-            replaceCurrentClassLoader(mParentClassLoader);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(mParentClassLoader != null){
+            try {
+                replaceCurrentClassLoader(mParentClassLoader);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         cost = System.currentTimeMillis() - time;
         BDebug.i("DL", "dynamic plugins loading costs " + cost);
