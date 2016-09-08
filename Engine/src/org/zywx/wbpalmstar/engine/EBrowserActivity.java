@@ -671,8 +671,6 @@ public final class EBrowserActivity extends FragmentActivity {
             } else {
                 or = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
             }
-        } else {// sensor
-            ;
         }
         return or;
     }
