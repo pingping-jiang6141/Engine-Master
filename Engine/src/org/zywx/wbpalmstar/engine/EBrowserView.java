@@ -205,7 +205,11 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
             return;
         }
         try {
-            super.loadUrl(url);
+            if (url.startsWith("javascript:") && Build.VERSION.SDK_INT >= 19) {
+                evaluateJavascript(url.substring("javascript:".length()), null);
+            } else {
+                super.loadUrl(url);
+            }
         } catch (Exception e) {
             ;
         }
