@@ -14,4 +14,5 @@
   <bgcolor>#fefefe</bgcolor>  
   <widgetOne version="[widgetOneVersion]"/>  
   <orientation>15</orientation> 
+  <statusbar color="#00000000"/>
 </widget>
