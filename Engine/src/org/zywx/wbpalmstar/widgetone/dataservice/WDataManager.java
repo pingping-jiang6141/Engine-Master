@@ -901,6 +901,8 @@ public class WDataManager {
         widgetData.m_obfuscation = assetsData.m_obfuscation;
         widgetData.m_opaque = assetsData.m_opaque;
         widgetData.mErrorPath=assetsData.mErrorPath;
+        widgetData.noHardwareList=assetsData.noHardwareList;
+
         if (isUpdateWidget && isCopyAssetsFinish) {
             String matchAssetPath = BUtility.F_ASSET_PATH + "widget/";
             if (widgetData.m_indexUrl.startsWith(matchAssetPath)) {
@@ -1472,6 +1474,11 @@ public class WDataManager {
                                     "src");
                         }else if("statusbar".equals(localName)){
                             WWidgetData.sStatusBarColor= Color.parseColor(parser.getAttributeValue(null,"color"));
+                        } else if ("deviceitem".equals(localName)) {
+                            String text = parser.nextText();
+                            if (!widgetData.noHardwareList.contains(text)) {
+                                widgetData.noHardwareList.add(text);
+                            }
                         } else if ("widgetonelocation".equals(localName)) {
                             String value = parser.nextText();
                             if (value == null || value.length() == 0) {
