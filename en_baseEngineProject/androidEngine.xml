@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.3_160627_01</version>
-	<package>android_Engine_3.3_160627_01</package>
-	<description>主窗口不执行uexWindow.topBounceViewRefresh()</description>
+    <version>sdksuit_3.4_160920_01</version>
+	<package>android_Engine_3.4_160920_01</package>
+	<description>沉浸式通知栏;根据config配置动态关闭硬件加速</description>
 </info>
