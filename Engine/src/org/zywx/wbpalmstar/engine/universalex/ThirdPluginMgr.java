@@ -250,10 +250,10 @@ public class ThirdPluginMgr {
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÒÑ¾­¼ÓÔØÁËÖØ¸´µÄ²å¼ş
+     * åˆ¤æ–­æ˜¯å¦å·²ç»åŠ è½½äº†é‡å¤çš„æ’ä»¶
      * 
-     * @param jsName ²å¼şÃû³Æ
-     * @param javaName ²å¼şÈë¿ÚÀàÃû³Æ
+     * @param jsName æ’ä»¶åç§°
+     * @param javaName æ’ä»¶å…¥å£ç±»åç§°
      * @return
      */
     private boolean isDuplicatedPlugin(String jsName, String javaName) {
@@ -262,7 +262,7 @@ public class ThirdPluginMgr {
     }
 
     /**
-     * ¼ÓÔØapkĞÎÊ½µÄ¶¯Ì¬¿â²å¼ş£¬»ñÈ¡classLoader
+     * åŠ è½½apkå½¢å¼çš„åŠ¨æ€åº“æ’ä»¶ï¼Œè·å–classLoader
      * 
      * @param apkPath
      * @param context
@@ -278,7 +278,7 @@ public class ThirdPluginMgr {
     }
 
     /**
-     * ¿½±´²¢³õÊ¼»¯ËùÓĞ¶¯Ì¬¿â²å¼ş
+     * æ‹·è´å¹¶åˆå§‹åŒ–æ‰€æœ‰åŠ¨æ€åº“æ’ä»¶
      * 
      * @param context
      * @param listenerQueue
@@ -289,7 +289,7 @@ public class ThirdPluginMgr {
         long cost = 0;
         this.copyDynamicApk();
         XmlPullParser plugins = null;
-        // ¶¯Ì¬¼ÓÔØapk²å¼ş
+        // åŠ¨æ€åŠ è½½apkæ’ä»¶
         File apkPluginParentDir = new File(libsParentDir + File.separator + dexApk);
         File[] pluginApks = apkPluginParentDir.listFiles();
         if (pluginApks != null) {
@@ -297,7 +297,7 @@ public class ThirdPluginMgr {
                 try {
                     File apkPluginDir = pluginApks[i];
                     if (apkPluginDir.isDirectory()) {
-                        // Ò»¸ö¶¯Ì¬²å¼şËùÔÚÄ¿Â¼
+                        // ä¸€ä¸ªåŠ¨æ€æ’ä»¶æ‰€åœ¨ç›®å½•
                         String uexName = apkPluginDir.getName();
                         File apkPluginFile = new File(apkPluginDir
                                 + File.separator + uexName + ".apk");
@@ -332,13 +332,13 @@ public class ThirdPluginMgr {
     }
 
     /**
-     * ¸ù¾İplugin.xmlÖĞµÄÅäÖÃ£¬¼ÓÔØ²å¼ş
+     * æ ¹æ®plugin.xmlä¸­çš„é…ç½®ï¼ŒåŠ è½½æ’ä»¶
      * 
      * @param plugins
      * @param listenerQueue
      * @param context
      * @param classLoader
-     *            Èç¹û²»ĞèÒªÖ¸¶¨classLoader£¬´«null
+     *            å¦‚æœä¸éœ€è¦æŒ‡å®šclassLoaderï¼Œä¼ null
      */
     public void initClass(XmlPullParser plugins,
             ELinkedList<EngineEventListener> listenerQueue,
@@ -349,7 +349,7 @@ public class ThirdPluginMgr {
         String globalStr = "";
         ThirdPluginObject scriptObj = null;
         if (classLoader == null) {
-            // ´«¿ÕÔòÊ¹ÓÃÄ¬ÈÏµÄclassLoader
+            // ä¼ ç©ºåˆ™ä½¿ç”¨é»˜è®¤çš„classLoader
             classLoader = mContext.getClassLoader();
         }
         try {
@@ -556,12 +556,12 @@ public class ThirdPluginMgr {
         long time = System.currentTimeMillis();
         long cost = 0;
         // if (ESystemInfo.getIntence().mIsDevelop) {
-        // //TODO Èç¹ûÊÇIDEµ÷ÊÔ°æ¾Í°Ñ²å¼ş¸´ÖÆµ½sd¿¨
+        // //TODO å¦‚æœæ˜¯IDEè°ƒè¯•ç‰ˆå°±æŠŠæ’ä»¶å¤åˆ¶åˆ°sdå¡
         // }
         SharedPreferences sp = mContext.getSharedPreferences(
                 F_SP_NAME_PLUGIN_LOADING, Context.MODE_PRIVATE);
         boolean isFinished = false;
-        String curVersion = "";// ¼ÇÂ¼µ±Ç°apk°æ±¾ºÅ
+        String curVersion = "";// è®°å½•å½“å‰apkç‰ˆæœ¬å·
         try {
             PackageManager pm = mContext.getPackageManager();
             PackageInfo pinfo = pm.getPackageInfo(mContext.getPackageName(),
@@ -576,7 +576,7 @@ public class ThirdPluginMgr {
             if (isFinished) {
                 String lastCopyPkgVer = sp.getString(
                         F_SP_KEY_NAME_PLUGIN_COPY_LAST_PKG_VERSION, "");
-                // Èôµ±Ç°°æ±¾ºÅÓëÉÏ´Î¿½±´°æ±¾ºÅ²»ÏàÍ¬£¬ÔòÒªÖØĞÂ¿½±´¶¯Ì¬¿â²å¼ş
+                // è‹¥å½“å‰ç‰ˆæœ¬å·ä¸ä¸Šæ¬¡æ‹·è´ç‰ˆæœ¬å·ä¸ç›¸åŒï¼Œåˆ™è¦é‡æ–°æ‹·è´åŠ¨æ€åº“æ’ä»¶
                 isFinished = lastCopyPkgVer.equals(curVersion);
             }
         } catch (Exception e) {
@@ -587,7 +587,7 @@ public class ThirdPluginMgr {
             isFinished = CopyAssets(mContext, dexApk, libsParentDir
                     + File.separator
                     + dexApk);
-            // copyÍê³É£¬¼ÇÂ¼×´Ì¬ÒÔ¼°µ±Ç°apk°æ±¾
+            // copyå®Œæˆï¼Œè®°å½•çŠ¶æ€ä»¥åŠå½“å‰apkç‰ˆæœ¬
             Editor edit = sp.edit();
             edit.putBoolean(F_SP_KEY_NAME_PLUGIN_COPY_FINISHED, isFinished);
             edit.putString(F_SP_KEY_NAME_PLUGIN_COPY_LAST_PKG_VERSION,
@@ -600,8 +600,8 @@ public class ThirdPluginMgr {
         BDebug.i("DL", "copyDynamicApk costs " + cost);
     }
 
-    // ÒòÎªÖ®Ç°µÄ·½·¨ÎŞ·¨Ìæ»»×Ó½ø³ÌµÄclassloader£¬¹Ê¸Ä³ÉÒÔÏÂµÄ·½Ê½¡£ÓÉÓÚÃ¿Ò»¸ö½ø³Ì³õÊ¼»¯µÄÊ±ºò¶¼»á³õÊ¼»¯Ò»´ÎËûµÄapplication£¬¶øÇÒÄ¬ÈÏµÄclassloaderÊÇºÍapplicationµÄclassloaderÒ»ÑùµÄ
-    // ¹ÊÔÚapplication³õÊ¼»¯µÄÊ±ºò£¬Ìæ»»µôapplicationµÄclassloader¡£Ö®Ç°Ö»ÓĞÔÚÖ÷½ø³ÌÖĞ²ÅÌæ»»µôapplicationµÄloader£¬ËùÒÔ×Ó½ø³Ì»¹ÊÇÎŞ·¨¼ÓÔØ¶¯Ì¬²å¼ş
+    // å› ä¸ºä¹‹å‰çš„æ–¹æ³•æ— æ³•æ›¿æ¢å­è¿›ç¨‹çš„classloaderï¼Œæ•…æ”¹æˆä»¥ä¸‹çš„æ–¹å¼ã€‚ç”±äºæ¯ä¸€ä¸ªè¿›ç¨‹åˆå§‹åŒ–çš„æ—¶å€™éƒ½ä¼šåˆå§‹åŒ–ä¸€æ¬¡ä»–çš„applicationï¼Œè€Œä¸”é»˜è®¤çš„classloaderæ˜¯å’Œapplicationçš„classloaderä¸€æ ·çš„
+    // æ•…åœ¨applicationåˆå§‹åŒ–çš„æ—¶å€™ï¼Œæ›¿æ¢æ‰applicationçš„classloaderã€‚ä¹‹å‰åªæœ‰åœ¨ä¸»è¿›ç¨‹ä¸­æ‰æ›¿æ¢æ‰applicationçš„loaderï¼Œæ‰€ä»¥å­è¿›ç¨‹è¿˜æ˜¯æ— æ³•åŠ è½½åŠ¨æ€æ’ä»¶
     private void initClassLoader() {
         try {
             pluginJars = mContext.getAssets().list(dexJar);

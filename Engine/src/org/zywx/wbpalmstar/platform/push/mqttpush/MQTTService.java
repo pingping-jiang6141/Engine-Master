@@ -1010,9 +1010,10 @@ public class MQTTService implements MqttSimpleCallback {
         // (e.g. we receive an MQTT message), then we start a new keep alive
         // period, postponing the next ping.
 
+        Intent intent = new Intent(MQTT_PING_ACTION);
+        intent.setPackage(_context.getPackageName());
         PendingIntent pendingIntent = PendingIntent
-                .getBroadcast(_context, 0, new Intent(MQTT_PING_ACTION),
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+                .getBroadcast(_context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // in case it takes us a little while to do this, we try and do it
         // shortly before the keep alive period expires
