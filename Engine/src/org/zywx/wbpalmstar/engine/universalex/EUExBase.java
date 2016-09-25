@@ -572,7 +572,7 @@ public abstract class EUExBase {
         return true;
     }
 
-    public void finishWidget(String inResultInfo, String appId, boolean isWgtBG) {
+    public void finishWidget(String inResultInfo, String appId, boolean isWgtBG, String inAnimiId) {
         if (null == mBrwView) {
             return;
         }
@@ -580,7 +580,7 @@ public abstract class EUExBase {
         if (null == curWind) {
             return;
         }
-        curWind.getBrowser().finishWidget(inResultInfo, appId, isWgtBG);
+        curWind.getBrowser().finishWidget(inResultInfo, appId, isWgtBG, inAnimiId);
     }
 
     /**

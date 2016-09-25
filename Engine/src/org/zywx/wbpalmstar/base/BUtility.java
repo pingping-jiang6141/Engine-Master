@@ -220,6 +220,20 @@ public class BUtility {
     }
 
     /**
+     * @return 增量更新开关
+     */
+    public static boolean getIsUpdateWidget() {
+        return WDataManager.isUpdateWidget;
+    }
+
+    /**
+     * @return widget目录是否拷贝完成到沙箱目录
+     */
+    public static boolean getIsCopyAssetsFinish() {
+        return WDataManager.isCopyAssetsFinish;
+    }
+
+    /**
      * 得到widgetone的目录路径
      * 
      * @return ../widgetone/
