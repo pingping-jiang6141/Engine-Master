@@ -42,6 +42,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.zywx.wbpalmstar.base.BDebug;
+import org.zywx.wbpalmstar.base.BUtility;
 import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 import org.zywx.wbpalmstar.platform.certificates.Http;
 
@@ -233,6 +234,7 @@ public class PushReportHttpClient {
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("count", 1);
+            jsonObject.put("tenantMark", BUtility.getTenantAccount(mCtx));
             jsonObject.put("softToken", softToken);
             StringEntity stringEntity = new StringEntity(jsonObject.toString());
             post.setEntity(stringEntity);
