@@ -566,6 +566,7 @@ public class BUtility {
         if (path == null || path.length() == 0) {
             return null;
         }
+        path = correctFilePath(path);
         if (path.startsWith(F_ASSET_PATH)) {
             return path.substring(F_ASSET_PATH.length());
         } else if (path.startsWith(F_FILE_SCHEMA)) {
@@ -605,10 +606,33 @@ public class BUtility {
      * @return
      */
     public static String makeRealPath(String path, EBrowserView browserView) {
+        path = correctFilePath(path);
         path = makeUrl(browserView.getCurrentUrl(), path);
         int wgtType = browserView.getCurrentWidget().m_wgtType;
         String widgetPath = browserView.getCurrentWidget().getWidgetPath();
         return makeRealPath(path, widgetPath, wgtType);
+    }
+
+    /**
+     * 纠正文件路径，兼容css url()规范：
+     * url(a.png)等价于url( a.png )，等价于url('a.png)，等价于url("a.png"),等价于url( "a.png" )。
+     * 
+     * @param path
+     * @return
+     */
+    private static String correctFilePath(String path) {
+        String correctPath = path.trim();
+        String[] errorChar = { "\'", "\"" };
+        for (int i = 0; i < errorChar.length; i++) {
+            if (correctPath.startsWith(errorChar[i])) {
+                correctPath = correctPath.substring(1);
+            }
+            if (correctPath.endsWith(errorChar[i])) {
+                correctPath = correctPath.substring(0,
+                        correctPath.length() - 1);
+            }
+        }
+        return correctPath;
     }
 
     /**
