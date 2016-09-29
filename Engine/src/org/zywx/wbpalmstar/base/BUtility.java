@@ -447,6 +447,7 @@ public class BUtility {
         if (null == inBaseUrl || inBaseUrl.length() == 0) {
             return null;
         }
+        inUrl = correctFilePath(inUrl);
         // inUrl = URLDecoder.decode(inUrl);
         if (uriHasSchema(inUrl) || inUrl.startsWith("/")) {
             return inUrl;
@@ -606,7 +607,6 @@ public class BUtility {
      * @return
      */
     public static String makeRealPath(String path, EBrowserView browserView) {
-        path = correctFilePath(path);
         path = makeUrl(browserView.getCurrentUrl(), path);
         int wgtType = browserView.getCurrentWidget().m_wgtType;
         String widgetPath = browserView.getCurrentWidget().getWidgetPath();
