@@ -231,17 +231,11 @@ public class PushReportThread extends Thread implements PushReportConstants {
         String result = PushReportHttpClient.bindOrUnbindDeviceInfo(
                 (host_pushBindUser + url_push_bindDevice), mJsonObject,
                 m_activity);
-//        if (null != mBrwView) {
-//            EUExBase.callBackJs(mBrwView, "uexWidget.cbSetPushInfo", result);
-//        }
     }
 
     private void unBindDeviceInfo() {
         String result = PushReportHttpClient.bindOrUnbindDeviceInfo(
                 (host_pushBindUser + url_push_bindDevice), mJsonObject,
                 m_activity);
-//        if (null != mBrwView) {
-//            EUExBase.callBackJs(mBrwView, "uexWidget.cbDelPushInfo", result);
-//        }
     }
 }
