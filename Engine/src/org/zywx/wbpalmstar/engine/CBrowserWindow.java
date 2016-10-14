@@ -106,7 +106,14 @@ public class CBrowserWindow extends EXWebViewClient {
             return true;
         }
         boolean isUrl = url.startsWith("file") || url.startsWith("http");
+        boolean isCustomUrl = url.startsWith("alipay://") || url.startsWith("weixin://");
         if (!isUrl) {
+            if (isCustomUrl) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                activity.startActivity(intent);
+                return true;
+            }
             return true;
         }
         EBrowserView target = (EBrowserView) view;

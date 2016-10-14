@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.4_160929_01</version>
-	<package>android_Engine_3.4_160929_01</package>
-	<description>推送打开上报时增加租户标识字段tenantMark;纠正文件路径，兼容css url()规范</description>
+    <version>sdksuit_3.4_161014_01</version>
+	<package>android_Engine_3.4_161014_01</package>
+	<description>推送打开上报时增加租户标识字段tenantMark;纠正文件路径，兼容css url()规范;打开外部页面无法通过UrlScheme调用微信、支付宝</description>
 </info>
