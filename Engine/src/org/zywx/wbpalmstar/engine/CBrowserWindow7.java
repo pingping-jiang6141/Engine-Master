@@ -68,6 +68,7 @@ public class CBrowserWindow7 extends ACEDESBrowserWindow7 {
     @SuppressLint("NewApi")
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        super.shouldOverrideUrlLoading(view, url);
         Activity activity = (Activity) view.getContext();
         if (url.startsWith("tel:")) {
             try {
@@ -168,6 +169,7 @@ public class CBrowserWindow7 extends ACEDESBrowserWindow7 {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
         mIsPageOnload = false;
         if (view == null) {
             return;
@@ -195,6 +197,7 @@ public class CBrowserWindow7 extends ACEDESBrowserWindow7 {
 
     @Override
     public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
         if (view == null) {
             return;
         }
