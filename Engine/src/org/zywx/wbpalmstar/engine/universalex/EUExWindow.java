@@ -102,6 +102,7 @@ public class EUExWindow extends EUExBase {
     public static final String function_cbShowPluginViewContainer = "uexWindow.cbShowPluginViewContainer";
     public static final String function_cbHidePluginViewContainer = "uexWindow.cbHidePluginViewContainer";
     public static final String function_cbClearPluginViewContainer = "uexWindow.cbClearPluginViewContainer";
+    public static final String function_cbDownloadCallback = "uexWindow.cbDownloadCallback";
     public static final String function_onPluginContainerPageChange = "uexWindow.onPluginContainerPageChange";
 
     public static final String function_onSlipedUpward = "uexWindow.onSlipedUpward";
@@ -183,6 +184,8 @@ public class EUExWindow extends EUExBase {
     private ResoureFinder finder;
 
     public static final String KEY_HARDWARE = "hardware";//硬件加速
+    public static final String KEY_DOWNLOAD_CALLBACK = "downloadCallback";//下载回调
+    public static final String KEY_USER_AGENT = "userAgent";
 
     public EUExWindow(Context context, EBrowserView inParent) {
         super(context, inParent);
@@ -227,6 +230,8 @@ public class EUExWindow extends EUExBase {
         String bgColor = "#00000000";
         boolean hasExtraInfo = false;
         int hardware = -1;
+        int downloadCallback = 0;
+        String userAgent = "";
         if (parm.length > 7) {
             animDuration = parm[7];
         }
@@ -248,6 +253,8 @@ public class EUExWindow extends EUExBase {
                 if (hardware != -1) {
                     hasExtraInfo = true;
                 }
+                downloadCallback = data.optInt(KEY_DOWNLOAD_CALLBACK, 0);
+                userAgent = data.optString(KEY_USER_AGENT, "");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -327,6 +334,8 @@ public class EUExWindow extends EUExBase {
         windEntry.mOpaque = opaque;
         windEntry.mBgColor = bgColor;
         windEntry.mHardware = hardware;
+        windEntry.mDownloadCallback = downloadCallback;
+        windEntry.mUserAgent = userAgent;
         windEntry.hasExtraInfo = hasExtraInfo;
         curWind.createWindow(mBrwView, windEntry);
     }
@@ -1125,6 +1134,8 @@ public class EUExWindow extends EUExBase {
         String bgColor = "#00000000";
         boolean hasExtraInfo = false;
         int hardware = -1;
+        int downloadCallback = 0;
+        String userAgent = "";
         if (parm.length > 11) {
             String jsonData = parm[11];
             try {
@@ -1143,6 +1154,8 @@ public class EUExWindow extends EUExBase {
                 if (hardware != -1) {
                     hasExtraInfo = true;
                 }
+                downloadCallback = data.optInt(KEY_DOWNLOAD_CALLBACK, 0);
+                userAgent = data.optString(KEY_USER_AGENT, "");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -1222,6 +1235,8 @@ public class EUExWindow extends EUExBase {
         popEntry.mBottom = bottom;
         popEntry.mOpaque = opaque;
         popEntry.mBgColor = bgColor;
+        popEntry.mDownloadCallback = downloadCallback;
+        popEntry.mUserAgent = userAgent;
         popEntry.mHardware = hardware;
         popEntry.hasExtraInfo = hasExtraInfo;
         String query = null;
@@ -1417,6 +1432,7 @@ public class EUExWindow extends EUExBase {
         /**赋初值，避免不传bgColor崩溃*/
         String bgColor = "#00000000";
         boolean hasExtraInfo = false;
+        int mainDownloadCallback = 0;
         if (parm.length > 10) {
             String jsonData = parm[10];
             try {
@@ -1431,6 +1447,7 @@ public class EUExWindow extends EUExBase {
                     bgColor = data.getString(WWidgetData.TAG_WIN_BG_COLOR);
                     hasExtraInfo = true;
                 }
+                mainDownloadCallback = data.optInt(KEY_DOWNLOAD_CALLBACK, 0);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -1495,6 +1512,7 @@ public class EUExWindow extends EUExBase {
             mainPopEntry.mFlag = flag;
             mainPopEntry.mOpaque = opaque;
             mainPopEntry.mBgColor = bgColor;
+            mainPopEntry.mDownloadCallback = mainDownloadCallback;
             mainPopEntry.hasExtraInfo = hasExtraInfo;
             popEntrys.add(mainPopEntry);
 
@@ -1512,6 +1530,8 @@ public class EUExWindow extends EUExBase {
                 /**赋初值，避免不传bgColor崩溃*/
                 String bgColor1 = "#00000000";
                 boolean hasExtraInfo1 = false;
+                int popDownloadCallback = 0;
+                String userAgent = "";
                 if (jsonContent.getJSONObject(i).has(EBrwViewEntry.TAG_EXTRAINFO)) {
                     try {
                         String extraInfo = jsonContent.getJSONObject(i).getString(EBrwViewEntry.TAG_EXTRAINFO);
@@ -1524,6 +1544,8 @@ public class EUExWindow extends EUExBase {
                             bgColor1 = data.getString(WWidgetData.TAG_WIN_BG_COLOR);
                             hasExtraInfo1 = true;
                         }
+                        popDownloadCallback = data.optInt(KEY_DOWNLOAD_CALLBACK, 0);
+                        userAgent = data.optString(KEY_USER_AGENT, "");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -1531,6 +1553,8 @@ public class EUExWindow extends EUExBase {
                 popEntry.mOpaque = opaque1;
                 popEntry.mBgColor = bgColor1;
                 popEntry.hasExtraInfo = hasExtraInfo1;
+                popEntry.mDownloadCallback = popDownloadCallback;
+                popEntry.mUserAgent = userAgent;
                 popEntry.mViewName = jsonContent.getJSONObject(i).getString(
                         "inPageName");
 

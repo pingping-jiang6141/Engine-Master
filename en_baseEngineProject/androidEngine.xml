@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.4_161017_01</version>
-	<package>android_Engine_3.4_161017_01</package>
-	<description>修复uexAppStoreMgr调用finishWidget失败问题</description>
+    <version>sdksuit_3.4_161019_01</version>
+	<package>android_Engine_3.4_161019_01</package>
+	<description>增加文件下载回调cbDownloadCallback;打开窗口时增加UserAgent参数设置</description>
 </info>

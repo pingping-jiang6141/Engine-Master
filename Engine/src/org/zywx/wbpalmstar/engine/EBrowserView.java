@@ -77,6 +77,7 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
     private EBrwViewAnim mViewAnim;
     private EXWebViewClient mEXWebViewClient;
     private Method mDismissZoomControl;
+    private int mDownloadCallback = 0;  // 0 下载不回调，使用引擎下载; 1 下载回调给主窗口，前端自己下载; 2 下载回调给当前窗口，前端自己下载;
 
     // use for debug
     private Method mDumpDisplayTree;
@@ -1528,9 +1529,13 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
     @Override
     public void onDownloadStart(String url, String userAgent,
                                 String contentDisposition, String mimetype, long contentLength) {
-
-        mEXWebViewClient.onDownloadStart(mContext, url, userAgent,
-                contentDisposition, mimetype, contentLength);
+        if (mDownloadCallback == 0) {
+            mEXWebViewClient.onDownloadStart(mContext, url, userAgent,
+                    contentDisposition, mimetype, contentLength);
+        } else {
+            mBroWind.executeCbDownloadCallbackJs(this, mDownloadCallback,
+                    url, userAgent, contentDisposition, mimetype, contentLength);
+        }
     }
 
     public void setNeedScroll(boolean b) {
@@ -1548,4 +1553,23 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
     public interface OnEBrowserViewChangeListener {
         void onPageFinish();
     }
+
+    public void setUserAgent(String userAgent) {
+        mBaSetting.setUserAgent(userAgent);
+    }
+
+    public int getDownloadCallback() {
+        if (mDestroyed) {
+            return 0;
+        }
+        return mDownloadCallback;
+    }
+
+    public void setDownloadCallback(int downloadCallback) {
+        if (mDestroyed) {
+            return;
+        }
+        this.mDownloadCallback = downloadCallback;
+    }
+
 }
