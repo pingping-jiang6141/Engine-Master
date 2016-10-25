@@ -30,7 +30,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -46,20 +45,10 @@ import org.zywx.wbpalmstar.base.BUtility;
 import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 import org.zywx.wbpalmstar.platform.certificates.Http;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.Socket;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.net.UnknownHostException;
 import java.nio.charset.Charset;
-import java.security.KeyStore;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -223,13 +212,13 @@ public class PushReportHttpClient {
                 appid = tenantId + ":" + appid;
             }
             String appkey = EUExUtil.getString("appkey");
-            appkey = PushReportUtility.decodeStr(appkey);
+            appkey = BUtility.decodeStr(appkey);
             PushReportUtility.log("appid ==" + appid + " appkey ==" + appkey);
             post.addHeader("Accept", "*/*");
             post.addHeader("Content-Type", "application/json");
             post.addHeader("x-mas-app-id", appid);
             post.addHeader(PushReportUtility.KEY_APPVERIFY,
-                    PushReportUtility.getAppVerifyValue(appid, appkey,
+                    BUtility.getAppVerifyValue(appid, appkey,
                             System.currentTimeMillis()));
 
             JSONObject jsonObject = new JSONObject();
@@ -527,11 +516,11 @@ public class PushReportHttpClient {
                     "app", Context.MODE_PRIVATE);
             String appid = preferences.getString("appid", null);
             String appkey = EUExUtil.getString("appkey");
-            appkey = PushReportUtility.decodeStr(appkey);
+            appkey = BUtility.decodeStr(appkey);
             PushReportUtility.log("appid ==" + appid + " appkey ==" + appkey);
             conn.setRequestProperty("x-mas-app-id", appid);
             conn.setRequestProperty("x-mas-verify",
-                    PushReportUtility.getAppVerifyValue(appid, appkey,
+                    BUtility.getAppVerifyValue(appid, appkey,
                             System.currentTimeMillis()));
             conn.setDoInput(true);
             conn.setDoOutput(true);
