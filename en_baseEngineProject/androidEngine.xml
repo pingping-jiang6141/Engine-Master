@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.4_161025_01</version>
-	<package>android_Engine_3.4_161025_01</package>
-	<description>修改Android6.0以上大部分手机推送链接失败</description>
+    <version>sdksuit_3.4_161026_01</version>
+	<package>android_Engine_3.4_161026_01</package>
+	<description>修改切换成英文后，退出对话框还是提示中文的问题</description>
 </info>

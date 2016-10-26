@@ -42,7 +42,6 @@ import android.view.WindowManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient.CustomViewCallback;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.slidingmenu.lib.SlidingMenu;
 
@@ -50,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.zywx.wbpalmstar.acedes.ACEDes;
 import org.zywx.wbpalmstar.base.BDebug;
+import org.zywx.wbpalmstar.base.ResoureFinder;
 import org.zywx.wbpalmstar.base.util.ConfigXmlUtil;
 import org.zywx.wbpalmstar.engine.external.Compat;
 import org.zywx.wbpalmstar.engine.universalex.EUExBase;
@@ -537,10 +537,11 @@ public final class EBrowserActivity extends FragmentActivity {
 
     private final void loadResError() {
         AlertDialog.Builder dia = new AlertDialog.Builder(this);
-        dia.setTitle(EResources.display_dialog_error);
-        dia.setMessage(EResources.display_init_error);
+        ResoureFinder finder = ResoureFinder.getInstance();
+        dia.setTitle(finder.getString(this, "browser_dialog_error"));
+        dia.setMessage(finder.getString(this, "browser_init_error"));
         dia.setCancelable(false);
-        dia.setPositiveButton(EResources.display_confirm,
+        dia.setPositiveButton(finder.getString(this, "confirm"),
                 new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
@@ -563,10 +564,11 @@ public final class EBrowserActivity extends FragmentActivity {
         }
         try {
             AlertDialog.Builder tDialog = new AlertDialog.Builder(this);
-            tDialog.setTitle(EResources.display_exitdialog_msg);
-            tDialog.setNegativeButton(EResources.display_cancel, null);
-            tDialog.setMessage(EResources.display_exitdialog_app_text);
-            tDialog.setPositiveButton(EResources.display_confirm,
+            ResoureFinder finder = ResoureFinder.getInstance();
+            tDialog.setTitle(finder.getString(this, "browser_exitdialog_msg"));
+            tDialog.setNegativeButton(finder.getString(this, "cancel"), null);
+            tDialog.setMessage(finder.getString(this, "browser_exitdialog_app_text"));
+            tDialog.setPositiveButton(finder.getString(this, "confirm"),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
