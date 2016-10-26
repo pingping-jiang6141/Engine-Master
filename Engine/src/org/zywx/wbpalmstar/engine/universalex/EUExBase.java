@@ -237,13 +237,7 @@ public abstract class EUExBase {
             return;
         }
 
-        float nowScale = 1.0f;
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         int l = (int) (parms.leftMargin * sc);
         int t = (int) (parms.topMargin * sc);
         int w = parms.width;
@@ -404,13 +398,7 @@ public abstract class EUExBase {
     public final void addViewToWebView(View child,
                                        android.widget.AbsoluteLayout.LayoutParams params,
                                        String id) {
-        float nowScale = 1.0f;
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         int x = (int) (params.x * sc);
         int y = (int) (params.y * sc);
         int w = params.width;

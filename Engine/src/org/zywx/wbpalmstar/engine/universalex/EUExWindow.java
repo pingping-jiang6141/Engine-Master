@@ -641,13 +641,7 @@ public class EUExWindow extends EUExBase {
         if (null == curWind) {
             return;
         }
-        float nowScale = 1.0f;
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         String inType = parm[0];
         String inDataType = parm[1];
         String inUrl = parm[2];
@@ -1102,14 +1096,7 @@ public class EUExWindow extends EUExBase {
         if (null == curWind) {
             return;
         }
-        float nowScale = 1.0f;
-
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         String inPopName = parm[0];
         String windPopName = curWind.getName() + inPopName;
         if (!checkWindPopPermission(windPopName)) {
@@ -1335,14 +1322,7 @@ public class EUExWindow extends EUExBase {
             return;
         }
 
-        float nowScale = 1.0f;
-
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         String inPopName = parm[0];
         String inX = parm[1];
         String inY = parm[2];
@@ -1407,14 +1387,7 @@ public class EUExWindow extends EUExBase {
 
         EBrwViewEntry mainPopEntry = new EBrwViewEntry(EBrwViewEntry.VIEW_TYPE_POP);
 
-        float nowScale = 1.0f;
-
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         String inContent = parm[0];
         String inMultiPopName = parm[1];
 
@@ -1679,12 +1652,7 @@ public class EUExWindow extends EUExBase {
         if (null == curWind) {
             return;
         }
-        float nowScale = 1.0f;
-        int versionA = Build.VERSION.SDK_INT;
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         String inPopName = parm[0];
         String inX = parm[1];
         String inY = parm[2];
@@ -2117,15 +2085,8 @@ public class EUExWindow extends EUExBase {
         } catch (Exception e) {
             ;
         }
-        float nowScale = 1.0f;
 
-        int versionA = Build.VERSION.SDK_INT;
-
-        if (versionA <= 18) {
-            nowScale = mBrwView.getScale();
-        }
-
-        float sc = nowScale;
+        float sc = mBrwView.getCustomScale();
         tx = tx * sc;
         ty = ty * sc;
         mBrwView.makeTranslation(tx, ty, tz);

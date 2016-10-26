@@ -118,6 +118,14 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
         this.callback = callback;
     }
 
+    public float getCustomScale(){
+        float nowScale = 1.0f;
+        if (Build.VERSION.SDK_INT <= 18) {
+            nowScale = getScale();
+        }
+        return nowScale;
+    }
+
     public void init() {
         setInitialScale(100);
         setVerticalScrollbarOverlay(true);
@@ -1488,12 +1496,7 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
             isSlideCallback = isSupportSlideCallback && !EBrowserWindow.isShowDialog;
         }
         if (isSlideCallback) {
-            float nowScale = 1.0f;
-
-            if (versionA <= 18) {
-                nowScale = getScale();
-            }
-            float contentHeight = getContentHeight() * nowScale;
+            float contentHeight = getContentHeight() * getCustomScale();
             boolean isSlipedDownEdge = t != oldt && t > 0
                     && contentHeight <= t + getHeight() + mThreshold;
             if (isSlipedDownEdge) {
