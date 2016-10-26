@@ -2546,6 +2546,10 @@ public class EUExWindow extends EUExBase {
         return mBrwView.getWindowName();
     }
 
+    public String getWebViewKernelInfo(String[] params){
+        return mBrwView.getWebViewKernelInfo();
+    }
+
     public void showBounceView(String[] parm) {
         if (parm.length < 3) {
             return;

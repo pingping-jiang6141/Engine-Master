@@ -20,6 +20,9 @@ package org.zywx.wbpalmstar.engine;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
@@ -39,6 +42,7 @@ import org.json.JSONObject;
 import org.zywx.wbpalmstar.acedes.ACEDes;
 import org.zywx.wbpalmstar.acedes.EXWebViewClient;
 import org.zywx.wbpalmstar.base.BDebug;
+import org.zywx.wbpalmstar.base.vo.KernelInfoVO;
 import org.zywx.wbpalmstar.engine.EBrowserHistory.EHistoryEntry;
 import org.zywx.wbpalmstar.engine.universalex.EUExCallback;
 import org.zywx.wbpalmstar.engine.universalex.EUExManager;
@@ -1555,6 +1559,25 @@ public class EBrowserView extends WebView implements View.OnLongClickListener,
 
     public interface OnEBrowserViewChangeListener {
         void onPageFinish();
+    }
+
+    public String getWebViewKernelInfo() {
+        KernelInfoVO infoVO = new KernelInfoVO();
+        if (Build.VERSION.SDK_INT > 18) {
+            infoVO.setKernelType("System(Blink)");
+            try {
+                PackageManager pm = this.getContext().getPackageManager();
+                PackageInfo pinfo = pm.getPackageInfo("com.google.android.webview",
+                        PackageManager.GET_CONFIGURATIONS);
+                infoVO.setKernelVersion(pinfo.versionName);
+            } catch (NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            infoVO.setKernelType("System(Webkit)");
+        }
+        String info = DataHelper.gson.toJson(infoVO);
+        return info;
     }
 
     public void setUserAgent(String userAgent) {
