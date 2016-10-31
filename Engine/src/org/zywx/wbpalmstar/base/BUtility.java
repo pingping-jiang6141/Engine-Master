@@ -90,6 +90,7 @@ public class BUtility {
     public final static String F_Widget_RES_path = "widget/wgtRes/";
     public final static String F_Widget_RES_SCHEMA = "res://";
     public final static String F_SBOX_SCHEMA = "box://";
+    public final static String F_EXTERBOX_SCHEMA = "exterbox://";
     public final static String m_loadingImageSp = "loadingImageSp";
     public final static String m_loadingImagePath = "loadingImagePath";
     public final static String m_loadingImageTime= "loadingImageTime";
@@ -603,6 +604,12 @@ public class BUtility {
         } else if (path.startsWith(F_SBOX_SCHEMA)) {
             return WDataManager.m_sboxPath
                     + path.substring(F_SBOX_SCHEMA.length());
+        } else if (path.startsWith(F_SDCARD_PATH)) {
+            return getSdCardRootPath()
+                    + path.substring(F_SDCARD_PATH.length());
+        } else if (path.startsWith(F_EXTERBOX_SCHEMA)) {
+            return WDataManager.m_exterboxPath
+                    + path.substring(F_EXTERBOX_SCHEMA.length());
         } else {
             return path;
         }
@@ -680,8 +687,10 @@ public class BUtility {
                 && fullPath.length() > 0
                 && (fullPath.startsWith(BUtility.F_FILE_SCHEMA)
                 || fullPath.startsWith(BUtility.F_APP_SCHEMA)
-                || fullPath.startsWith(BUtility.F_WIDGET_SCHEMA) || fullPath
-                .startsWith(BUtility.F_Widget_RES_SCHEMA))) {
+                || fullPath.startsWith(BUtility.F_WIDGET_SCHEMA)
+                || fullPath.startsWith(BUtility.F_Widget_RES_SCHEMA)
+                || fullPath.startsWith(BUtility.F_SDCARD_PATH)
+                || fullPath.startsWith(BUtility.F_EXTERBOX_SCHEMA))) {
             return true;
         } else {
             return false;
