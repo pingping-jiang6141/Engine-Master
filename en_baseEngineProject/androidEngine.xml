@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-    <version>sdksuit_3.4_161031_01</version>
-	<package>android_Engine_3.4_161031_01</package>
-	<description>修改切换成英文后，退出对话框还是提示中文的问题;BUtility增加file:///sdcard/和exterbox://协议路径处理</description>
+    <version>sdksuit_3.4_161101_01</version>
+	<package>android_Engine_3.4_161101_01</package>
+	<description>BUtility增加file:///sdcard/和exterbox://协议路径处理;修改子应用的res://协议路径获取不正确</description>
 </info>
